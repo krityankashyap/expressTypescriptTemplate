@@ -1,11 +1,13 @@
 import express from 'express';
 import { Express } from 'express';
 import { serverConfig } from './config';
-import pingRouter from './routes/ping';
+import v1Router from './routes/v1/index.router';
+import v2Router from './routes/v2/index.router';
 
 const app : Express = express();
 
-app.use(pingRouter);
+app.use("/api/v1" , v1Router);
+app.use("/api/v2" , v2Router);
 
 app.listen(serverConfig.PORT , ()=>{
 
