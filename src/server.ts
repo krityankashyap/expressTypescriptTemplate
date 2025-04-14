@@ -3,6 +3,7 @@ import { Express } from 'express';
 import { serverConfig } from './config';
 import v1Router from './routes/v1/index.router';
 import v2Router from './routes/v2/index.router';
+import { z } from 'zod';
 
 const app : Express = express();
 
