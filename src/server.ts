@@ -6,6 +6,9 @@ import v2Router from './routes/v2/index.router';
 
 const app : Express = express();
 
+app.use(express.json());
+
+
 app.use("/api/v1" , v1Router);
 app.use("/api/v2" , v2Router);
 
