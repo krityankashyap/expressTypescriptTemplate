@@ -1,19 +1,18 @@
 import {NextFunction, Request , Response} from "express";
-import fs from "fs";
+import fs from "fs/promises";
+import { InternalServerError } from "../utils/errors/app.error";
 
-export const pingHandler =  (req : Request , res : Response , next : NextFunction)  => {
+export const pingHandler = async (req : Request , res : Response , next : NextFunction)  => {
 
-   fs.readFile("sample" , (err , data) => {
-    if(err){
-        console.log("Error reading file ", err)
-        next(err); // Pass the error to the next middleware which is the default error handler
-    }
+    try {
+    await fs.readFile("sample");
+    res.status(200).json({
+        message : "Pong!..",
+        sucess : true
+    })
+} catch(error){
+  throw new InternalServerError("Internal serval error");
+  }
 
-   // console.log(data.toString());
-   })
-  
-    // res.status(200).json({
-    //     message : "Pong",
-    //     success : true,
-    // });
 }
+
