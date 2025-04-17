@@ -6,6 +6,7 @@ import v2Router from './routes/v2/index.router';
 import { genericErrorHandler } from './middlewares/error.middlewares';
 import logger from './config/logger.config';
 
+
 const app : Express = express();
 
 app.use(express.json());

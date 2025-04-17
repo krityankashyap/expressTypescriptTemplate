@@ -3,6 +3,7 @@ import fs from "fs/promises";
 import { InternalServerError } from "../utils/errors/app.error";
 import logger from "../config/logger.config";
 
+
 export const pingHandler = async (req : Request , res : Response , next : NextFunction)  => {
 
  logger.info("Ping req received");
