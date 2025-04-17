@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AnyZodObject } from "zod";
+import logger from "../config/logger.config";
 
 /**
  * 
@@ -9,12 +10,15 @@ import { AnyZodObject } from "zod";
 
 export const validateReqBody = (schema : AnyZodObject)  => {
    return async (req : Request , res : Response , next : NextFunction) => {
+     
       try {
+        logger.info("validating req body");
         await schema.parseAsync(req.body);
-        console.log("Request is validated");
+        logger.info("Request is validated");
         next();
 
       } catch (error) {
+         logger.error("Invalid req body");
          res.status(400).json({
          message : "invalid req body",
          success : "false",
